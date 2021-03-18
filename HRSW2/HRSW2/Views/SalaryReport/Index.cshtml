@@ -1,0 +1,23 @@
+﻿@model HRSW2.Models.SalaryReport;
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" asp-action="GetReport">
+                <input type="hidden" asp-for="EmpId" />
+                <input type="hidden" asp-for="EmpName" />
+                <input type="hidden" asp-for="DepName" />
+                <input type="hidden" asp-for="PosName" />
+                <input type="hidden" asp-for="TotalSalary" />
+                <select asp-for="DepId" class="form-control" asp-items="@Model.DepartmentList"></select>
+                <select asp-for="MonthId" class="form-control" asp-items="@Model.MonthList"></select>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </form>
+        <div>
+
+    </div>
+
+<script>
+    $(document).ready(function () {
+        $("select").removeAttr("multiple");
+    })
+</script>

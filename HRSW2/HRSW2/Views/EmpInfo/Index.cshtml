@@ -1,0 +1,197 @@
+﻿<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                Employee Id
+            </th>
+            <th>
+                Social Number
+            </th>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Photo
+            </th>
+            <th>
+                Updated
+            </th>
+            <th>
+                JoinDay
+            </th>
+            <th>
+                LeaveDay
+            </th>
+            <th>
+                Position
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:5001/EmpInfo/GetAllEmployee",
+
+            success: function (data) {
+                for (i = 0; i < data.length; i++) {
+                    var tr = document.createElement("tr");
+                    /// idEmp row
+                    var td = document.createElement("td");                   
+                    var textNode = document.createTextNode(data[i].idEmp);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+                    ///  socialNumber row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].socialNumber);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+                    /// name row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].name);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+
+                    /// age row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].age);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+
+                    /// address row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].address);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+
+                    /// photo row
+                    var td = document.createElement("td");
+                    var imgNode = document.createElement("img");
+                    var srcAttr = document.createAttribute("src");
+                    var heightAttr = document.createAttribute("height");
+                    var widthAttr = document.createAttribute("width");
+                    heightAttr.value = "80";
+                    widthAttr.value = "80";
+
+                    srcAttr.value = "data:image/jpg;base64," + data[i].photo + "";
+                    imgNode.setAttributeNode(srcAttr);
+                    imgNode.setAttributeNode(heightAttr);
+                    imgNode.setAttributeNode(widthAttr);
+                   
+                    td.appendChild(imgNode);
+                    tr.appendChild(td);
+
+
+                    /// updated row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].updated);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+                    /// joinDay row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].joinDay);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+                    /// leaveDay row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].leaveDay);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+
+                    /// leaveDay row
+                    var tdIdEmp = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].leaveDay);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+                   
+                    /// position.namePos row
+                    var td = document.createElement("td");
+                    var textNode = document.createTextNode(data[i].position.namePos);
+
+                    td.appendChild(textNode);
+                    tr.appendChild(td);
+
+                    /// edit delete details row
+                    var td = document.createElement("td");
+                        //edit anchor
+                        var textNode = document.createElement("a");
+
+                        //delete anchor
+                        var textNode = document.createElement("a");
+
+                        //details anchor
+                        var details = document.createElement("a");
+                        var href = document.createAttribute("href");
+                    href.value = "https://localhost:5001/empinfo/details/" + data[i].id+"";
+                        var textNode = document.createTextNode("Details");
+                        details.appendChild(textNode);
+                        details.setAttributeNode(href);
+
+                        td.appendChild(details);
+
+                    tr.appendChild(td);
+
+
+
+
+
+
+
+                    $("#tbody").append(tr);
+
+
+
+                                     
+                 
+                   
+                }
+               
+                $("#name").text(data.name);
+                $("#idEmp").text(data.name);
+            },
+            error: function (data) {
+                alert("fal");
+                console.log("Error ", data);
+            }
+        })
+
+
+    });
+
+
+</script>

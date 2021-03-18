@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SalaryReport>
+<div class="row" >
+    <div class="col-md-4">
+        <table  class="table">
+           <thead>
+               <tr>
+                   <th>
+                       @Html.DisplayNameFor(model => model.EmpId)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.EmpName)
+                   </th>
+                   
+                   <th>
+                       @Html.DisplayNameFor(model => model.DepName)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.PosName)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.MonthName)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.TotalSalary)
+                   </th>
+               </tr>
+           </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmpId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmpName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PosName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MonthName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalSalary)
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@{ 
+    var listRole = ViewBag.listRole as IEnumerable<SelectListItem>;
+} 
+<h1>Register Page</h1>
+<form action="/home/register" method="post">
+    <label>Username</label>
+    <input type="text" name="username" value="" />
+    <label>Role</label>
+   
+    <select  asp-items="@listRole"></select>
+   
+    <label>Password</label>
+    <input type="password" name="password" value="" />
+
+    <button type="submit">Register</button>
+</form>
